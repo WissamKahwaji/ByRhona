@@ -1,6 +1,6 @@
 import { AiFillTikTok } from "react-icons/ai";
 import { FaFacebookSquare, FaInstagramSquare } from "react-icons/fa";
-import { FaSquareThreads } from "react-icons/fa6";
+import { FaSquareWhatsapp } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -89,24 +89,30 @@ const Footer = () => {
 
             <ul className="mb-2 flex gap-2">
               <li>
-                <Link to={"/"} target="_blank">
-                  <FaFacebookSquare className="h-8 w-8" />
+                <Link to={"https://wa.me/+971508153735"} target="_blank">
+                  <FaSquareWhatsapp className="h-8 w-8" />
                 </Link>
               </li>
               <li>
-                <Link to={"/"} target="_blank">
+                <Link
+                  to={"https://www.instagram.com/by_rhona/"}
+                  target="_blank"
+                >
                   <FaInstagramSquare className="h-8 w-8" />
                 </Link>
               </li>
 
               <li>
-                <Link to={"/"} target="_blank">
-                  <FaSquareThreads className="h-8 w-8" />
+                <Link
+                  to={"https://www.tiktok.com/@by_rhona_?_t=8pSe85jw9hY&_r=1"}
+                  target="_blank"
+                >
+                  <AiFillTikTok className="h-8 w-8" />
                 </Link>
               </li>
               <li>
                 <Link to={"/"} target="_blank">
-                  <AiFillTikTok className="h-8 w-8" />
+                  <FaFacebookSquare className="h-8 w-8" />
                 </Link>
               </li>
             </ul>
@@ -196,24 +202,30 @@ const Footer = () => {
 
               <ul className="mb-2 flex gap-2">
                 <li>
-                  <Link to={"/"} target="_blank">
-                    <FaFacebookSquare className="h-8 w-8" />
+                  <Link to={"https://wa.me/+971508153735"} target="_blank">
+                    <FaSquareWhatsapp className="h-8 w-8" />
                   </Link>
                 </li>
                 <li>
-                  <Link to={"/"} target="_blank">
+                  <Link
+                    to={"https://www.instagram.com/by_rhona/"}
+                    target="_blank"
+                  >
                     <FaInstagramSquare className="h-8 w-8" />
                   </Link>
                 </li>
 
                 <li>
-                  <Link to={"/"} target="_blank">
-                    <FaSquareThreads className="h-8 w-8" />
+                  <Link
+                    to={"https://www.tiktok.com/@by_rhona_?_t=8pSe85jw9hY&_r=1"}
+                    target="_blank"
+                  >
+                    <AiFillTikTok className="h-8 w-8" />
                   </Link>
                 </li>
                 <li>
                   <Link to={"/"} target="_blank">
-                    <AiFillTikTok className="h-8 w-8" />
+                    <FaFacebookSquare className="h-8 w-8" />
                   </Link>
                 </li>
               </ul>

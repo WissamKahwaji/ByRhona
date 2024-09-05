@@ -15,10 +15,19 @@ const Navbar = () => {
   const location = useLocation();
   const currentPath = location.pathname;
   const socialMediaIcons = [
-    { icon: <FaWhatsapp className="text-gray-800" />, link: "/" },
-    { icon: <FaInstagram className="text-gray-800" />, link: "/" },
+    {
+      icon: <FaWhatsapp className="text-gray-800" />,
+      link: `https://wa.me/+971508153735`,
+    },
+    {
+      icon: <FaInstagram className="text-gray-800" />,
+      link: "https://www.instagram.com/by_rhona/",
+    },
+    {
+      icon: <FaTiktok className="text-gray-800" />,
+      link: "https://www.tiktok.com/@by_rhona_?_t=8pSe85jw9hY&_r=1",
+    },
     { icon: <FaFacebook className="text-gray-800" />, link: "/" },
-    { icon: <FaTiktok className="text-gray-800" />, link: "/" },
   ];
 
   const navItems = [
@@ -80,6 +89,7 @@ const Navbar = () => {
             <Link
               key={index}
               to={socialMedia.link ?? ""}
+              target="_blank"
               className="flex items-center text-white hover:text-hoverColor transition duration-300"
             >
               {socialMedia.icon}
@@ -173,6 +183,7 @@ const Navbar = () => {
                     <Link
                       key={index}
                       to={socialMedia.link ?? ""}
+                      target="_blank"
                       className="flex items-center text-white hover:text-hoverColor transition duration-300"
                     >
                       {socialMedia.icon}
