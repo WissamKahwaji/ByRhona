@@ -9,6 +9,7 @@ import {
 import { FaMobileScreenButton, FaTiktok, FaWhatsapp } from "react-icons/fa6";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { Link, useLocation } from "react-router-dom";
+import LanguageButton from "../../components/ui/LanguageButton";
 
 const Navbar = () => {
   const location = useLocation();
@@ -109,7 +110,10 @@ const Navbar = () => {
             </p>
           ))}
         </div>
-        <HiOutlineShoppingCart className="text-2xl" />
+        <div className="flex flex-row space-x-3">
+          <LanguageButton />
+          <HiOutlineShoppingCart className="text-2xl" />
+        </div>
       </nav>
       <nav className="flex md:hidden items-center justify-between w-full px-3 py-1">
         <Link to={"/"} className="">
