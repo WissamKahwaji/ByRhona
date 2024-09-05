@@ -111,7 +111,7 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div>
+          {/* <div>
             <iframe
               title="ByRhona"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d462560.68281993904!2d55.55715258647901!3d25.076280448422043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43496ad9c645%3A0xbde66e5084295162!2z2K_YqNmK!5e0!3m2!1sar!2sae!4v1725454725455!5m2!1sar!2sae"
@@ -126,7 +126,7 @@ const Footer = () => {
               </p>
               <p className="font-semibold  ">United Arab Emirates, Dubai</p>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="md:hidden flex flex-col w-full space-y-8">
           <div className="grid grid-cols-2 gap-10">
@@ -219,7 +219,7 @@ const Footer = () => {
               </ul>
             </div>
           </div>
-          <div>
+          {/* <div>
             <iframe
               title="ByRhona"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d462560.68281993904!2d55.55715258647901!3d25.076280448422043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43496ad9c645%3A0xbde66e5084295162!2z2K_YqNmK!5e0!3m2!1sar!2sae!4v1725454725455!5m2!1sar!2sae"
@@ -234,7 +234,7 @@ const Footer = () => {
               </p>
               <p className="font-semibold  ">United Arab Emirates, Dubai</p>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className=" my-2 text-center text-sm md:text-base">
