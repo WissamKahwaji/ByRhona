@@ -38,7 +38,7 @@ const AboutUsInfo = ({ aboutUsContent }: AboutUsContentModel) => {
             transition={{ duration: 0.8, ease: "easeInOut", delay: 0.2 }}
           >
             <p className="font-bold font-header text-primary text-2xl">
-              {selectedLanguage === "en"
+              {selectedLanguage === "en-GB"
                 ? contactUs.title
                 : selectedLanguage === "fr"
                 ? contactUs.titleFr
@@ -49,14 +49,14 @@ const AboutUsInfo = ({ aboutUsContent }: AboutUsContentModel) => {
                 direction: "rtl",
                 textAlign: "justify",
                 textAlignLast: `${
-                  selectedLanguage === "en" || selectedLanguage === "fr"
+                  selectedLanguage === "en-GB" || selectedLanguage === "fr"
                     ? "left"
                     : "right"
                 }`,
               }}
               className="text-start text-primary first-letter:pl-2 whitespace-pre-wrap"
             >
-              {selectedLanguage === "en"
+              {selectedLanguage === "en-GB"
                 ? contactUs.text
                 : selectedLanguage === "fr"
                 ? contactUs.textFr

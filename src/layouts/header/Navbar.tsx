@@ -190,7 +190,7 @@ const Navbar = () => {
                           }
                           className="px-4 py-2 text-gray-800 hover:bg-hoverColor cursor-pointer flex items-center justify-between"
                         >
-                          {selectedLang === "en"
+                          {selectedLang === "en-GB"
                             ? department.name
                             : selectedLang === "fr"
                             ? department.nameFr
@@ -210,7 +210,7 @@ const Navbar = () => {
                                     className="block px-4 py-2 text-gray-800 hover:bg-hoverColor"
                                     reloadDocument
                                   >
-                                    {selectedLang === "en"
+                                    {selectedLang === "en-GB"
                                       ? category.name
                                       : selectedLang === "fr"
                                       ? category.nameFr
@@ -331,7 +331,7 @@ const Navbar = () => {
                                   }
                                   className="py-2 text-gray-800 text-sm hover:bg-hoverColor cursor-pointer flex items-center justify-start"
                                 >
-                                  {selectedLang === "en"
+                                  {selectedLang === "en-GB"
                                     ? department.name
                                     : selectedLang === "fr"
                                     ? department.nameFr
@@ -350,7 +350,7 @@ const Navbar = () => {
                                             // onClick={toggleMobileDrawer}
                                             className="block py-2 text-gray-800 hover:bg-hoverColor text-sm "
                                           >
-                                            {selectedLang === "en"
+                                            {selectedLang === "en-GB"
                                               ? category.name
                                               : selectedLang === "fr"
                                               ? category.nameFr

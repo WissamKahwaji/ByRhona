@@ -73,7 +73,7 @@ const ProductDetailsPage = () => {
       <div className="flex flex-col justify-center gap-4 bg-gray-background px-6 py-4 md:flex-row md:gap-6">
         {/* Product Title */}
         <p className="sm:2xl lg:5xl border-b border-border pb-4 text-xl font-semibold uppercase md:hidden md:text-4xl text-primary">
-          {selectedLanguage === "en"
+          {selectedLanguage === "en-GB"
             ? productInfo?.title
             : selectedLanguage === "fr"
             ? productInfo?.titleFr
@@ -139,7 +139,7 @@ const ProductDetailsPage = () => {
         {/* Product Information Section */}
         <div className="flex flex-col gap-4 md:max-w-[500px] md:gap-6 mt-24 md:mt-0">
           <p className="sm:2xl lg:5xl hidden border-b border-border pb-4 text-xl font-semibold uppercase md:block md:text-2xl text-primary">
-            {selectedLanguage === "en"
+            {selectedLanguage === "en-GB"
               ? productInfo?.title
               : selectedLanguage === "fr"
               ? productInfo?.titleFr
@@ -151,7 +151,7 @@ const ProductDetailsPage = () => {
               {t("category")}:
             </p>
             <p className="sm:text-lg md:text-lg">
-              {selectedLanguage === "en"
+              {selectedLanguage === "en-GB"
                 ? productInfo?.category.name
                 : selectedLanguage === "fr"
                 ? productInfo?.category.nameFr
@@ -176,7 +176,7 @@ const ProductDetailsPage = () => {
 
           <div className="overflow-hidden whitespace-pre-wrap">
             <p>
-              {selectedLanguage === "en"
+              {selectedLanguage === "en-GB"
                 ? productInfo?.desc
                 : selectedLanguage === "fr"
                 ? productInfo?.descFr

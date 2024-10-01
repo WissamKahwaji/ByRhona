@@ -47,7 +47,7 @@ const CollectionsCategory = () => {
                     />
                   </div>
                   <p className="text-sm font-semibold uppercase md:text-lg text-secondary">
-                    {selectedLanguage === "en"
+                    {selectedLanguage === "en-GB"
                       ? collection.name
                       : selectedLanguage === "fr"
                       ? collection.nameFr

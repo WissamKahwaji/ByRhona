@@ -10,7 +10,7 @@ const LanguageButton = () => {
   // const [lang, setLang] = useState(
   //   storedLanguage || navigator.language.split("-")[0] || "en"
   // );
-  const [lang, setLang] = useState("en");
+  const [lang, setLang] = useState("en-GB");
   // const navigate = useNavigate();
 
   // useEffect(() => {
