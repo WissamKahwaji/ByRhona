@@ -52,4 +52,18 @@ const COLLECTION_CAROUSAL_RESPONSIVE = {
   },
 };
 
-export { CAROUSAL_RESPONSIVE, COLLECTION_CAROUSAL_RESPONSIVE };
+const CART_TABLE_HEADER = [
+  "products",
+  "count",
+  "note",
+  "total_price",
+  "delete",
+];
+const ORDERS_TABLE_HEADER = ["products", "count", "total_price"];
+
+export {
+  CAROUSAL_RESPONSIVE,
+  COLLECTION_CAROUSAL_RESPONSIVE,
+  CART_TABLE_HEADER,
+  ORDERS_TABLE_HEADER,
+};

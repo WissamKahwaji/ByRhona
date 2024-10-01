@@ -1,3 +1,3 @@
-import { Content } from "../../../api/about-us/type";
+import { AboutUsContent } from "../../../api/about-us/type";
 
-export type AboutUsContent = { aboutUsContent?: Content[] };
+export type AboutUsContent = { aboutUsContent?: AboutUsContent[] };

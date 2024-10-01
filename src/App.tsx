@@ -1,12 +1,19 @@
 import { Outlet, useLocation } from "react-router-dom";
-import "./App.css";
 import { useEffect } from "react";
 import Navbar from "./layouts/header/Navbar";
 import "react-multi-carousel/lib/styles.css";
 import Footer from "./layouts/footer";
+import { useAppSelector } from "./app/hooks";
+import { selectCartValues } from "./features/cart/slice";
 
 function App() {
   const { pathname } = useLocation();
+  const cartValues = useAppSelector(selectCartValues);
+
+  useEffect(() => {
+    localStorage.setItem("cartValues", JSON.stringify(cartValues));
+  }, [cartValues]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);

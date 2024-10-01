@@ -2,15 +2,19 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import React from "react";
-const HomeSlider = () => {
-  const imageSliders = [
-    {
-      img: "https://i.imgur.com/xtbZUjn.png",
-    },
-    {
-      img: "https://i.imgur.com/T5F21tb.png",
-    },
-  ];
+
+interface HomeSliderProos {
+  images: string[] | undefined;
+}
+const HomeSlider = ({ images }: HomeSliderProos) => {
+  // const imageSliders = [
+  //   {
+  //     img: "https://i.imgur.com/xtbZUjn.png",
+  //   },
+  //   {
+  //     img: "https://i.imgur.com/T5F21tb.png",
+  //   },
+  // ];
   const settings = {
     dots: true,
     infinite: true,
@@ -84,15 +88,16 @@ const HomeSlider = () => {
   return (
     <div className="w-full md:h-[460px]  h-[140px]">
       <Slider {...settings} ref={sliderRef} className="w-full  ">
-        {imageSliders.map((item, index) => (
-          <div>
-            <img
-              src={item.img}
-              alt={`Slider ${index + 1}`}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        ))}
+        {images &&
+          images.map((item, index) => (
+            <div>
+              <img
+                src={item}
+                alt={`Slider ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
       </Slider>
     </div>
   );

@@ -1,13 +1,19 @@
-export type DeepDetails = {
-  price: string;
-  weight: string;
-};
+import { CategoryModel } from "../categories/type";
+
 export type Product = {
-  deepDetails: DeepDetails[];
   _id: string;
   img: string;
+  imgs?: string[];
+  videos?: string[];
   title: string;
+  titleFr: string;
+  titleAr: string;
+  category: CategoryModel;
   desc: string;
-  priceKg: number;
-  __v?: number;
+  descFr: string;
+  descAr: string;
+  price: {
+    priceAED: number;
+    priceUSD: number;
+  };
 };
