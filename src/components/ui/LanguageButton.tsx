@@ -6,10 +6,11 @@ const LanguageButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const langList = ["en", "fr", "ar"];
   const { t } = useTranslation();
-  const storedLanguage = localStorage.getItem("selectedLanguage");
-  const [lang, setLang] = useState(
-    storedLanguage || navigator.language.split("-")[0] || "en"
-  );
+  // const storedLanguage = localStorage.getItem("selectedLanguage");
+  // const [lang, setLang] = useState(
+  //   storedLanguage || navigator.language.split("-")[0] || "en"
+  // );
+  const [lang, setLang] = useState("en");
   // const navigate = useNavigate();
 
   // useEffect(() => {
