@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
-import { AboutUsContent } from "./type";
+import { AboutUsContentModel } from "./type";
 import { useTranslation } from "react-i18next";
 
-const AboutUsInfo = ({ aboutUsContent }: AboutUsContent) => {
+const AboutUsInfo = ({ aboutUsContent }: AboutUsContentModel) => {
   const { i18n } = useTranslation();
   const selectedLanguage = i18n.language;
   return (
