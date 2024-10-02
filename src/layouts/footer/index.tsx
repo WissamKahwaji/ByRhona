@@ -76,7 +76,7 @@ const Footer = () => {
                       reloadDocument
                     >
                       <p className=" font-semibold capitalize text-gray-700">
-                        {selectedLanguage === "en-GB"
+                        {selectedLanguage === "en"
                           ? category.name
                           : selectedLanguage === "fr"
                           ? category.nameFr
@@ -191,7 +191,7 @@ const Footer = () => {
                         reloadDocument
                       >
                         <p className=" font-semibold capitalize text-gray-700">
-                          {selectedLanguage === "en-GB"
+                          {selectedLanguage === "en"
                             ? category.name
                             : selectedLanguage === "fr"
                             ? category.nameFr

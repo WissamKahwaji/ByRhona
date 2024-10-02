@@ -16,7 +16,7 @@ const ProductCard = (props: ProductCardProps) => {
             <div className="absolute left-0 top-0 flex h-0 w-full items-center justify-center bg-foreground/50  transition-all duration-500 group-hover:h-full  ">
               <p className=" hidden w-full bg-background p-2 text-center opacity-100 group-hover:block text-sm font-body whitespace-pre-wrap line-clamp-3 overflow-ellipsis">
                 {" "}
-                {selectedLanguage === "en-GB"
+                {selectedLanguage === "en"
                   ? desc
                   : selectedLanguage === "fr"
                   ? descFr
@@ -31,7 +31,7 @@ const ProductCard = (props: ProductCardProps) => {
           </div>
 
           <p className=" w-full overflow-hidden text-ellipsis whitespace-nowrap text-center text-sm font-semibold uppercase md:text-base text-primary">
-            {selectedLanguage === "en-GB"
+            {selectedLanguage === "en"
               ? title
               : selectedLanguage === "fr"
               ? titleFr

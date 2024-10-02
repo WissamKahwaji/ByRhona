@@ -26,7 +26,7 @@ const ProductsListPage = () => {
             category.products.length !== 0 && (
               <div key={category._id}>
                 <h2 className="mb-2  scroll-m-20  text-3xl font-semibold uppercase tracking-tight first:mt-0 sm:mb-4 md:mb-8 text-secondary">
-                  {selectedLanguage === "en-GB"
+                  {selectedLanguage === "en"
                     ? category.name
                     : selectedLanguage === "fr"
                     ? category.nameFr
