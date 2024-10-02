@@ -278,6 +278,7 @@ const Navbar = () => {
           </div>
         </Link>
         <div className="flex gap-x-4 items-center justify-start">
+          <LanguageButton />
           <BasketMenu />
           {!isAuthenticated ? (
             <Link to={`/signin`}>
