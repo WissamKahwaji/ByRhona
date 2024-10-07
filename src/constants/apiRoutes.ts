@@ -27,11 +27,16 @@ const PRODUCTS = {
   GET_LAST_SIX: "/products/get-last-six",
   GET_TOP_TEN_EXPENSIVE: "/products/get-top-ten-expensive",
   GET_TOP_TEN_CHEAPEST: "/products/get-top-ten-cheapest",
+  GET_OFFERS_PRODUCTS: "/products/get-offers-products",
+  CREATE_INTENT: "/products/create-payment",
+  PAYMENT_CONFIG: "/products/config",
 };
 
 const USER = {
   SIGNIN: "/user/signin",
   SIGNUP: "/user/signup",
+  REQUEST_VOUCHER: (userId: string | undefined) =>
+    `/user/request-amount/${userId}`,
 };
 
 const ORDERS = {

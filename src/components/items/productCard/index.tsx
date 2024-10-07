@@ -3,15 +3,31 @@ import { ProductCardProps } from "./type";
 import { useTranslation } from "react-i18next";
 
 const ProductCard = (props: ProductCardProps) => {
-  const { _id, img, title, desc, descAr, descFr, titleAr, titleFr, price } =
-    props;
+  const {
+    _id,
+    img,
+    title,
+    desc,
+    descAr,
+    descFr,
+    titleAr,
+    titleFr,
+    price,
+    isOffer,
+    priceAfterOffer,
+  } = props;
   const { t, i18n } = useTranslation();
   const selectedLanguage = i18n.language;
   //   const navigate = useNavigate();
   return (
-    <div className="flex  flex-col gap-3 px-4 sm:gap-5 font-header md:min-w-[340px]">
+    <div className="relative flex  flex-col gap-3 px-4 sm:gap-5 font-header md:min-w-[340px]">
+      {isOffer && (
+        <div className="absolute top-6 right-6 bg-foreground text-black px-3 py-1 text-xs font-semibold z-40 rotate-45 transform translate-x-2 -translate-y-2">
+          {t("offer")}
+        </div>
+      )}
       <Link to={`/products/${_id}`}>
-        <div className="  group flex w-full  flex-col items-center gap-4   ">
+        <div className="group flex w-full  flex-col items-center gap-4   ">
           <div className="  relative w-full ">
             <div className="absolute left-0 top-0 flex h-0 w-full items-center justify-center bg-foreground/50  transition-all duration-500 group-hover:h-full  ">
               <p className=" hidden w-full bg-background p-2 text-center opacity-100 group-hover:block text-sm font-body whitespace-pre-wrap line-clamp-3 overflow-ellipsis">
@@ -27,6 +43,8 @@ const ProductCard = (props: ProductCardProps) => {
               className="aspect-square h-full w-full object-cover"
               src={img}
               alt={title}
+              loading="lazy"
+              decoding="async"
             />
           </div>
 
@@ -38,13 +56,31 @@ const ProductCard = (props: ProductCardProps) => {
               : titleAr}
           </p>
 
-          <p className=" text-sm text-muted-foreground md:text-base lg:text-base">
-            <span className="mr-1">{price.priceAED}</span>
-            <span className="uppercase">{t("aed")}</span>
-            {" / "}
-            <span className="mr-1">{price.priceUSD}</span>
-            <span className="uppercase">$</span>
-          </p>
+          <div className="flex flex-row justify-center items-center w-full gap-x-3">
+            <p
+              className={`text-sm text-muted-foreground md:text-base lg:text-base ${
+                isOffer ? "line-through text-foreground" : ""
+              }`}
+            >
+              <span className="mr-1">{price.priceAED}</span>
+              <span className="uppercase">{t("aed")}</span>
+              {" / "}
+              <span className="mr-1">{price.priceUSD}</span>
+              <span className="uppercase">$</span>
+            </p>
+
+            {isOffer && priceAfterOffer && (
+              <p
+                className={`text-sm text-muted-foreground md:text-base lg:text-base`}
+              >
+                <span className="mr-1">{priceAfterOffer.priceAED}</span>
+                <span className="uppercase">{t("aed")}</span>
+                {" / "}
+                <span className="mr-1">{priceAfterOffer.priceUSD}</span>
+                <span className="uppercase">$</span>
+              </p>
+            )}
+          </div>
         </div>
       </Link>
       <Link to={`/products/${_id}`}>

@@ -14,9 +14,8 @@ const useSubmitOrderDetailsMutation = () => {
     mutationFn: (data: PaymentOrdersValue) => submitOrderDetails(data),
     onSuccess(_data, variables) {
       if (variables.paymentMethod === "card") {
-        navigate("/checkout", {
-          state: { deliveryFee: 25 },
-        });
+        dispatch(clearCart());
+        toast.success("your order has submitted successfully");
       } else {
         dispatch(clearCart());
         toast.success("your order has submitted successfully");

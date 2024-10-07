@@ -25,9 +25,13 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      state.cartValues.push(action.payload);
+      if (action.payload.productQuantity < action.payload.count) {
+        toast.error("product out of stock");
+      } else {
+        state.cartValues.push(action.payload);
 
-      toast.success("product has been added successfully.");
+        toast.success("product has been added successfully.");
+      }
     },
     clearCart: state => {
       state.cartValues = [];

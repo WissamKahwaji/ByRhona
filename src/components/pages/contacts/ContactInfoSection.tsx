@@ -74,11 +74,6 @@ const ContactInfoSection = (props: ContactInfoSectionProps) => {
               <FaWhatsappSquare className="h-8 w-8 text-gray-500 hover:text-primary transition-transform hover:scale-105 md:h-12 md:w-12" />
             </Link>
           </li>
-          <li>
-            <Link to={props.facebook ?? "/"} target="_blank">
-              <FaFacebookSquare className="h-8 w-8 text-gray-500 hover:text-primary transition-transform hover:scale-105 md:h-12 md:w-12" />
-            </Link>
-          </li>
 
           <li>
             <Link to={props.instagram ?? "/"} target="_blank">
@@ -88,6 +83,11 @@ const ContactInfoSection = (props: ContactInfoSectionProps) => {
           <li>
             <Link to={props.tiktok ?? "/"} target="_blank">
               <FaTiktok className="h-8 w-8 text-gray-500 hover:text-primary transition-transform hover:scale-105 md:h-12 md:w-12" />
+            </Link>
+          </li>
+          <li>
+            <Link to={props.facebook ?? "/"} target="_blank">
+              <FaFacebookSquare className="h-8 w-8 text-gray-500 hover:text-primary transition-transform hover:scale-105 md:h-12 md:w-12" />
             </Link>
           </li>
         </ul>

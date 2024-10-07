@@ -15,4 +15,15 @@ const signup = async (payload: UserModel) => {
   return res.data;
 };
 
-export { signIn, signup };
+const requestVoucherAmount = async (data: {
+  userId: string;
+  amount: number;
+}) => {
+  const res = await publicInstance.post(
+    API_ROUTES.USER.REQUEST_VOUCHER(data.userId),
+    data
+  );
+  return res.data;
+};
+
+export { signIn, signup, requestVoucherAmount };

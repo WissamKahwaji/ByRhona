@@ -155,7 +155,7 @@ const Navbar = () => {
         <div className="flex flex-row gap-x-10 justify-start items-center capitalize ">
           {navItems.map((item, index) =>
             item.hasMenu ? (
-              <div className="relative" ref={dropdownRef}>
+              <div key={index} className="relative" ref={dropdownRef}>
                 <p
                   onClick={toggleShopDropdown}
                   className={`cursor-pointer font-semibold flex items-center ${
@@ -306,7 +306,7 @@ const Navbar = () => {
               <div className="flex flex-col items-start mx-2 space-y-4 py-8">
                 {navItems.map((item, index) =>
                   item.hasMenu ? (
-                    <div className="w-full" ref={dropdownRef}>
+                    <div key={index} className="w-full" ref={dropdownRef}>
                       <p
                         onClick={toggleShopDropdown}
                         className={`flex justify-start items-center font-header border-b-2 w-full border-b-secondary px-4 py-2 text-gray-800 hover:bg-hoverColor uppercase ${
@@ -318,7 +318,7 @@ const Navbar = () => {
 
                       {isShopDropdownOpen && departmentsInfo && (
                         <div className="mt-2 pl-4">
-                          <Link to={"/products"}>
+                          <Link to={"/products"} reloadDocument>
                             <p className="py-2 text-gray-800 text-sm hover:bg-hoverColor cursor-pointer flex items-center justify-start">
                               {t("all_products")}
                             </p>
@@ -347,9 +347,10 @@ const Navbar = () => {
                                         (category: CategoryModel) => (
                                           <Link
                                             key={category._id}
-                                            to={`/products/${department._id}/${category._id}`}
+                                            to={`/products?category=${category.name}&categoryId=${category._id}`}
                                             // onClick={toggleMobileDrawer}
                                             className="block py-2 text-gray-800 hover:bg-hoverColor text-sm "
+                                            reloadDocument
                                           >
                                             {selectedLang === "en"
                                               ? category.name

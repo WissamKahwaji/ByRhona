@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import {
   getLastSixProducts,
+  getOffersProducts,
+  getPaymentConfig,
   getProductById,
   getTopTenCheapestProducts,
   getTopTenExpensiveProducts,
@@ -30,10 +32,24 @@ const useGetTopTenCheapestProductsQuery = () =>
     queryKey: ["get-top-ten-cheapest"],
     queryFn: () => getTopTenCheapestProducts(),
   });
+const useGetOffersProductsQuery = () =>
+  useQuery({
+    queryKey: ["get-offers-products"],
+    queryFn: () => getOffersProducts(),
+  });
+
+const useGetPaymentConfigQuery = () =>
+  useQuery({
+    queryKey: ["payment-config"],
+    queryFn: () => getPaymentConfig(),
+    staleTime: 0,
+  });
 
 export {
   useGetProductByIdInfoQuery,
   useGetLastSixProductsQuery,
   useGetTopTenExpensiveProductsQuery,
   useGetTopTenCheapestProductsQuery,
+  useGetOffersProductsQuery,
+  useGetPaymentConfigQuery,
 };

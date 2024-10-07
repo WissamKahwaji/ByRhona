@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { useAuth } from "../../context/AuthContext";
 import { SignInValues, UserModel } from "./type";
-import { signIn, signup } from ".";
+import { requestVoucherAmount, signIn, signup } from ".";
 import { toast } from "react-toastify";
 import { ErrorMessage } from "../type";
 
@@ -39,4 +39,22 @@ const useSignUpMutation = () => {
   });
 };
 
-export { useSignInMutation, useSignUpMutation };
+const useRequestVoucherAmountMutation = () => {
+  return useMutation({
+    mutationKey: ["request-voucher"],
+    mutationFn: (data: { userId: string; amount: number }) =>
+      requestVoucherAmount(data),
+    onSuccess: () => {
+      toast("success");
+    },
+    onError: () => {
+      toast.error("failed to request voucher, please try again later");
+    },
+  });
+};
+
+export {
+  useSignInMutation,
+  useSignUpMutation,
+  useRequestVoucherAmountMutation,
+};

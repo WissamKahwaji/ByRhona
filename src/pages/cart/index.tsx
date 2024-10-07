@@ -61,7 +61,9 @@ const CartPage = () => {
                     </p>
                     <p className=" text-muted-foreground ">
                       <span className="mr-1">
-                        {cartValue?.price.priceAED.toFixed(2)}
+                        {cartValue.isOffer && cartValue.priceAfterOffer
+                          ? cartValue?.priceAfterOffer.priceAED.toFixed(2)
+                          : cartValue?.price.priceAED.toFixed(2)}
                       </span>
                       <span className="uppercase">aed</span>
                     </p>
@@ -118,10 +120,14 @@ const CartPage = () => {
                 <p>
                   <span className="mr-1">
                     {(
-                      Number(cartValue.price.priceAED) * cartValue.count
+                      Number(
+                        cartValue.isOffer && cartValue.priceAfterOffer
+                          ? cartValue.priceAfterOffer.priceAED
+                          : cartValue.price.priceAED
+                      ) * cartValue.count
                     ).toFixed(2)}
                   </span>
-                  <span className=" uppercase">aed</span>
+                  <span className=" uppercase">{t("aed")}</span>
                 </p>
               </TableCell>
               <TableCell>
@@ -143,7 +149,14 @@ const CartPage = () => {
             <span className="mr-1 ">
               {cartValues.cartValues
                 .reduce(
-                  (acc, pre) => acc + pre.count * Number(pre.price.priceAED),
+                  (acc, pre) =>
+                    acc +
+                    pre.count *
+                      Number(
+                        pre.isOffer && pre.priceAfterOffer
+                          ? pre.priceAfterOffer.priceAED
+                          : pre.price.priceAED
+                      ),
                   0
                 )
                 .toFixed(2)}

@@ -1,7 +1,7 @@
 import Carousel from "react-multi-carousel";
 import { CAROUSAL_RESPONSIVE } from "../../../constants";
 import ProductCard from "../../items/productCard";
-import { useGetTopTenCheapestProductsQuery } from "../../../api/products/queries";
+import { useGetOffersProductsQuery } from "../../../api/products/queries";
 import { useTranslation } from "react-i18next";
 
 const OffersSection = () => {
@@ -9,7 +9,7 @@ const OffersSection = () => {
     data: productsInfo,
     isLoading,
     isError,
-  } = useGetTopTenCheapestProductsQuery();
+  } = useGetOffersProductsQuery();
 
   const { t } = useTranslation();
 

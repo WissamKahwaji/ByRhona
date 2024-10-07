@@ -71,7 +71,9 @@ const BasketMenu = () => {
                     </p>
                     <p className="text-gray-500 text-sm">
                       <span className="mr-1">
-                        {cartValue?.price.priceAED.toFixed(2)}
+                        {cartValue.isOffer && cartValue.priceAfterOffer
+                          ? cartValue?.priceAfterOffer.priceAED.toFixed(2)
+                          : cartValue?.price.priceAED.toFixed(2)}
                       </span>
                       <span className="uppercase">{t("aed")}</span>
                     </p>
@@ -99,7 +101,12 @@ const BasketMenu = () => {
                 {cart.cartValues.length &&
                   cart.cartValues
                     .reduce(
-                      (acc, pre) => acc + pre.count * pre.price.priceAED,
+                      (acc, pre) =>
+                        acc +
+                        pre.count *
+                          (pre.isOffer && pre.priceAfterOffer
+                            ? pre.priceAfterOffer.priceAED
+                            : pre.price.priceAED),
                       0
                     )
                     .toFixed(2)}

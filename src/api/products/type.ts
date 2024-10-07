@@ -16,4 +16,21 @@ export type Product = {
     priceAED: number;
     priceUSD: number;
   };
+  isOffer?: boolean;
+  priceAfterOffer?: {
+    priceAED: number;
+    priceUSD: number;
+  };
+
+  productQuantity?: number;
+};
+
+export type IntentData = {
+  amount: number;
+};
+export type PaymentConfigRes = {
+  publicKey: string;
+};
+export type IntentRes = {
+  clientSecret: string;
 };

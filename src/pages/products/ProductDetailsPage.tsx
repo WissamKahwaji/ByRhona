@@ -13,6 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuth } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import { FaRegPlayCircle } from "react-icons/fa";
 
 const ProductDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -23,7 +24,7 @@ const ProductDetailsPage = () => {
   const navigate = useNavigate();
   const {
     data: productInfo,
-    isLoading,
+    isFetching,
     isError,
   } = useGetProductByIdInfoQuery(id);
 
@@ -65,7 +66,7 @@ const ProductDetailsPage = () => {
     setMainMedia(media);
   };
 
-  if (isLoading) return <LoadingPage />;
+  if (isFetching) return <LoadingPage />;
   if (isError) return <div>Error !!!</div>;
 
   return (
@@ -123,15 +124,20 @@ const ProductDetailsPage = () => {
               />
             ))}
             {productInfo?.videos?.map((video, index) => (
-              <video
+              <div
                 key={index}
-                className={`h-16 w-16 object-cover cursor-pointer ${
-                  mainMedia === video ? "border-2 border-primary" : ""
-                }`}
+                className="relative cursor-pointer"
                 onClick={() => handleMediaClick(video)}
               >
-                <source src={video} type="video/mp4" />
-              </video>
+                <video
+                  className={`h-16 w-16 object-cover  ${
+                    mainMedia === video ? "border-2 border-primary" : ""
+                  }`}
+                >
+                  <source src={video} type="video/mp4" />
+                </video>
+                <FaRegPlayCircle className="absolute inset-1/4 w-8 h-8 text-white" />
+              </div>
             ))}
           </div>
         </div>
@@ -164,7 +170,11 @@ const ProductDetailsPage = () => {
               <p className="font-semibold capitalize md:text-lg">
                 {t("price")}:
               </p>
-              <p className="text-muted-foreground sm:text-lg md:text-lg">
+              <p
+                className={`text-muted-foreground sm:text-lg md:text-lg ${
+                  productInfo?.isOffer ? "text-foreground line-through" : ""
+                }`}
+              >
                 <span className="mr-1">{productInfo?.price.priceAED}</span>
                 <span className="uppercase">{t("aed")}</span>
                 {" / "}
@@ -172,8 +182,41 @@ const ProductDetailsPage = () => {
                 <span className="uppercase">$</span>
               </p>
             </div>
+            {productInfo?.isOffer && productInfo.priceAfterOffer && (
+              <div className="flex items-center gap-2">
+                <p className="font-semibold capitalize md:text-lg">
+                  {t("offer")}:
+                </p>
+                <p className={`text-muted-foreground sm:text-lg md:text-lg`}>
+                  <span className="mr-1">
+                    {productInfo?.priceAfterOffer.priceAED}
+                  </span>
+                  <span className="uppercase">{t("aed")}</span>
+                  {" / "}
+                  <span className="mr-1">
+                    {productInfo?.priceAfterOffer.priceUSD}
+                  </span>
+                  <span className="uppercase">$</span>
+                </p>
+              </div>
+            )}
           </div>
-
+          <div className="flex items-center gap-2">
+            <p className="font-semibold capitalize md:text-lg">
+              {t("quantity")}:
+            </p>
+            <p
+              className={`text-muted-foreground sm:text-lg md:text-lg ${
+                productInfo?.productQuantity && productInfo?.productQuantity > 0
+                  ? ""
+                  : "text-red-600"
+              }`}
+            >
+              {productInfo?.productQuantity && productInfo?.productQuantity > 0
+                ? productInfo?.productQuantity
+                : t("out_of_stock")}
+            </p>
+          </div>
           <div className="overflow-hidden whitespace-pre-wrap">
             <p>
               {selectedLanguage === "en"

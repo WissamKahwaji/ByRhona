@@ -9,6 +9,7 @@ export type DeliveryDetailsInputModel = {
   floorNumber?: string;
   unitNumber?: string;
   note?: string;
+  paymentMethod: "cash" | "card";
 };
 
 export type UserOrder = {
