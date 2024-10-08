@@ -20,19 +20,44 @@ import {
 import { useGetPaymentConfigQuery } from "../../api/products/queries";
 import { toast } from "react-toastify";
 import { createIntent } from "../../api/products";
+import { useGetUserVoucherQuery } from "../../api/voucher/queries";
 
 const PaymentOrdersDetailsPage = () => {
   const { t } = useTranslation();
   const userId = localStorage.getItem("userId");
   const { cartValues } = useSelector(selectCartValues);
   const { data: paymentConfig } = useGetPaymentConfigQuery();
+  const { data: voucherInfo } = useGetUserVoucherQuery();
 
   const { mutate: submitOrderDetails } = useSubmitOrderDetailsMutation();
 
   const [stripePromise, setStripePromise] = useState<Stripe | null>(null);
-
+  const [voucherChecked, setVoucherChecked] = useState(false);
   const [modal1Open, setModal1Open] = useState(false);
+  const [totalAmount, setTotalAmount] = useState<number>();
+  useEffect(() => {
+    const cartAmount = cartValues.reduce(
+      (acc, pre) =>
+        acc +
+        Number(
+          pre.isOffer && pre.priceAfterOffer
+            ? pre.priceAfterOffer.priceAED
+            : pre.price.priceAED
+        ) *
+          pre.count,
+      0
+    );
 
+    let finalAmount;
+    if (voucherChecked && voucherInfo?.amount) {
+      finalAmount = Math.max(cartAmount - voucherInfo.amount, 0);
+    } else {
+      // If no voucher is applied, total is just the cart amount
+      finalAmount = cartAmount;
+    }
+
+    setTotalAmount(finalAmount);
+  }, [cartValues, voucherChecked, voucherInfo?.amount]);
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const paymentIntent = params.get("payment_intent");
@@ -99,7 +124,7 @@ const PaymentOrdersDetailsPage = () => {
         0
       ),
 
-      paymentMethod: "cash",
+      paymentMethod: values.paymentMethod,
       cartItems: cartValues.map(cart => ({
         id: cart._id,
         img: cart.img,
@@ -111,8 +136,15 @@ const PaymentOrdersDetailsPage = () => {
         quantity: cart.count,
         note: cart.note,
       })),
+      isUseVoucher: voucherChecked,
     };
     if (values.paymentMethod === "cash") {
+      submitOrderDetails(finalValues, {
+        onSettled() {
+          setSubmitting(false);
+        },
+      });
+    } else if (values.paymentMethod === "card" && totalAmount === 0) {
       submitOrderDetails(finalValues, {
         onSettled() {
           setSubmitting(false);
@@ -359,6 +391,31 @@ const PaymentOrdersDetailsPage = () => {
                 </label>
               </div>
             </div>
+            <div>
+              <label htmlFor="floorNumber" className="text-xs">
+                {t("your_voucher_amount")} : {voucherInfo?.amount} AED
+              </label>
+              <div className="flex items-center mt-2">
+                <input
+                  type="checkbox"
+                  name="voucher"
+                  id="voucher"
+                  className="mr-2 cursor-pointer"
+                  checked={voucherChecked}
+                  onChange={e => {
+                    setVoucherChecked(e.currentTarget.checked);
+                  }}
+                />
+                <label htmlFor="home" className="text-xs font-header">
+                  {t("use_your_voucher")}
+                </label>
+              </div>
+            </div>
+            <div className="capitalize ">
+              <label htmlFor="floorNumber" className="text-lg">
+                {t("total_order_amount")} : {totalAmount} AED
+              </label>
+            </div>
             <button
               type="submit"
               disabled={isSubmitting}
@@ -384,17 +441,20 @@ const PaymentOrdersDetailsPage = () => {
                 {stripePromise ? (
                   <Elements stripe={stripePromise} options={options}>
                     <CheckoutForm
-                      amount={cartValues.reduce(
-                        (acc, pre) =>
-                          acc +
-                          Number(
-                            pre.isOffer && pre.priceAfterOffer
-                              ? pre.priceAfterOffer.priceAED
-                              : pre.price.priceAED
-                          ) *
-                            pre.count,
-                        0
-                      )}
+                      amount={
+                        totalAmount ??
+                        cartValues.reduce(
+                          (acc, pre) =>
+                            acc +
+                            Number(
+                              pre.isOffer && pre.priceAfterOffer
+                                ? pre.priceAfterOffer.priceAED
+                                : pre.price.priceAED
+                            ) *
+                              pre.count,
+                          0
+                        )
+                      }
                       paymentOrderValue={{
                         userId: userId ?? "",
                         userName: values.fullName,
@@ -431,6 +491,7 @@ const PaymentOrdersDetailsPage = () => {
                           quantity: cart.count,
                           note: cart.note,
                         })),
+                        isUseVoucher: voucherChecked,
                       }}
                     />
                   </Elements>

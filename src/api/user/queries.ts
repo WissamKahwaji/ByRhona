@@ -1,7 +1,7 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useAuth } from "../../context/AuthContext";
 import { SignInValues, UserModel } from "./type";
-import { requestVoucherAmount, signIn, signup } from ".";
+import { getUserById, requestVoucherAmount, signIn, signup } from ".";
 import { toast } from "react-toastify";
 import { ErrorMessage } from "../type";
 
@@ -11,7 +11,7 @@ const useSignInMutation = () => {
     mutationKey: ["sign-in"],
     mutationFn: (data: SignInValues) => signIn(data),
     onSuccess: data => {
-      login(data.result._id, data.result.email);
+      login(data.token, data.result._id, data.result.email);
       window.location.replace("/");
     },
     onError: () => {
@@ -26,7 +26,7 @@ const useSignUpMutation = () => {
     mutationKey: ["sign-up"],
     mutationFn: (payload: UserModel) => signup(payload),
     onSuccess: data => {
-      login(data.result._id, data.result.email);
+      login(data.token, data.result._id, data.result.email);
       toast.success("success");
       window.location.replace("/");
     },
@@ -53,8 +53,16 @@ const useRequestVoucherAmountMutation = () => {
   });
 };
 
+const useGetUserByIdQuery = (userId: string | undefined) =>
+  useQuery({
+    queryKey: ["get-user-byId"],
+    queryFn: () => getUserById(userId),
+    enabled: !!userId,
+  });
+
 export {
   useSignInMutation,
   useSignUpMutation,
   useRequestVoucherAmountMutation,
+  useGetUserByIdQuery,
 };

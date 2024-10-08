@@ -26,4 +26,9 @@ const requestVoucherAmount = async (data: {
   return res.data;
 };
 
-export { signIn, signup, requestVoucherAmount };
+const getUserById = async (userId: string | undefined) => {
+  const res = await publicInstance.get<UserModel>(API_ROUTES.USER.BYID(userId));
+  return res.data;
+};
+
+export { signIn, signup, requestVoucherAmount, getUserById };

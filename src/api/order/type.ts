@@ -58,4 +58,5 @@ export type PaymentOrdersValue = {
   cartItemsTotalPrice: number;
   paymentMethod: string;
   cartItems: CartItem[];
+  isUseVoucher: boolean;
 };

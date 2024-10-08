@@ -16,6 +16,9 @@ const useSubmitOrderDetailsMutation = () => {
       if (variables.paymentMethod === "card") {
         dispatch(clearCart());
         toast.success("your order has submitted successfully");
+        if (variables.isUseVoucher) {
+          navigate(`/`, { replace: true });
+        }
       } else {
         dispatch(clearCart());
         toast.success("your order has submitted successfully");

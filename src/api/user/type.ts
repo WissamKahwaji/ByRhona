@@ -5,6 +5,7 @@ export type UserModel = {
   password?: string;
   confirmPassword?: string;
   voucherAmount?: number;
+  voucher?: string;
 };
 
 export type SignInValues = {

@@ -37,11 +37,18 @@ const USER = {
   SIGNUP: "/user/signup",
   REQUEST_VOUCHER: (userId: string | undefined) =>
     `/user/request-amount/${userId}`,
+  BYID: (userId: string | undefined) => `/user/byId/${userId}`,
 };
 
 const ORDERS = {
   SUBMIT_DETAILS: "/order/submit",
   USER_ORDERS: (id: string) => `/order/user-orders/${id}`,
+};
+
+const VOUCHER = {
+  GET_USER_VOUCHER: "/voucher/user-voucher",
+  ADD: (userId: string) => `/voucher/add/${userId}`,
+  EDIT_AMOUNT: (voucherId: string | undefined) => `/voucher/edit/${voucherId}`,
 };
 
 const API_ROUTES = {
@@ -54,6 +61,7 @@ const API_ROUTES = {
   PRODUCTS,
   USER,
   ORDERS,
+  VOUCHER,
 };
 
 export default API_ROUTES;
