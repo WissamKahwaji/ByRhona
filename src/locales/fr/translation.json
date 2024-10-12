@@ -78,5 +78,6 @@
     "out_of_stock":"en rupture de stock",
     "card_payment":"paiement par carte",
     "get_your_voucher":"obtenez votre bon d'achat",
-    "increase_your_voucher_amount":"augmentez le montant de votre bon d'achat"
+    "increase_your_voucher_amount":"augmentez le montant de votre bon d'achat",
+    "no_products_in_this_collection":"aucun produit dans cette collection"
 }

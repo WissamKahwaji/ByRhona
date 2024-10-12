@@ -17,6 +17,7 @@ import SignUpPage from "./pages/auth/SignUpPage";
 import CartPage from "./pages/cart";
 import Orders from "./pages/orders";
 import PaymentOrdersDetailsPage from "./pages/payment-orders-details/PaymentOrdersDetailsPage";
+import CollectionDetailsPage from "./pages/collections/CollectionDetailsPage";
 
 const Routes = () => {
   const router = createBrowserRouter(
@@ -27,6 +28,7 @@ const Routes = () => {
         <Route path="about-us" element={<AboutUsPage />} />
         <Route path="products" element={<ProductsListPage />} />
         <Route path="products/:id" element={<ProductDetailsPage />} />
+        <Route path="collections/:id" element={<CollectionDetailsPage />} />
         <Route path="signin" element={<SignInPage />} />
         <Route path="signup" element={<SignUpPage />} />
         <Route path="cart" element={<CartPage />} />

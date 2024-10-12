@@ -78,5 +78,6 @@
     "out_of_stock":"out of stock",
     "card_payment":"card payment",
     "get_your_voucher":"get your voucher",
-    "increase_your_voucher_amount":"increase your voucher amount"
+    "increase_your_voucher_amount":"increase your voucher amount",
+    "no_products_in_this_collection":"no products in this collection"
 }

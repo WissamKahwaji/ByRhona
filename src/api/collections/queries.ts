@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getCollectionsInfo } from ".";
+import { getCollectionByIdInfo, getCollectionsInfo } from ".";
 
 const useGetCollectionsInfoQuery = () =>
   useQuery({
@@ -7,4 +7,11 @@ const useGetCollectionsInfoQuery = () =>
     queryFn: () => getCollectionsInfo(),
   });
 
-export { useGetCollectionsInfoQuery };
+const useGetCollectionByIdInfoQuery = (id: string | undefined) =>
+  useQuery({
+    queryKey: ["get-collection-by-Id"],
+    queryFn: () => getCollectionByIdInfo(id!),
+    enabled: !!id,
+  });
+
+export { useGetCollectionsInfoQuery, useGetCollectionByIdInfoQuery };

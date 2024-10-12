@@ -9,4 +9,11 @@ const getCollectionsInfo = async () => {
   return res.data;
 };
 
-export { getCollectionsInfo };
+const getCollectionByIdInfo = async (id: string) => {
+  const res = await publicInstance.get<CollectionModel>(
+    API_ROUTES.COLLECTIONS.GET_ById(id)
+  );
+  return res.data;
+};
+
+export { getCollectionsInfo, getCollectionByIdInfo };

@@ -32,9 +32,7 @@ const CollectionsCategory = () => {
         >
           {collectionsInfo?.map(collection => (
             <div className=" px-3 sm:px-6 md:px-9 lg:px-12  ">
-              <Link
-                to={`/products?type_id=${collection._id}&type=${collection.name}`}
-              >
+              <Link to={`/collections/${collection._id}`}>
                 <div
                   key={collection._id}
                   className="group flex  flex-col items-center gap-8 overflow-hidden  "

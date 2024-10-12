@@ -78,5 +78,6 @@
     "out_of_stock":"إنتهى من المخزن",
     "card_payment":"دفع عن طريق البطاقة",
     "get_your_voucher":"احصل على قسيمتك",
-    "increase_your_voucher_amount":"زيادة مبلغ قسيمتك"
+    "increase_your_voucher_amount":"زيادة مبلغ قسيمتك",
+    "no_products_in_this_collection":"لا يوجد منتجات في هذه المجموعة"
 }

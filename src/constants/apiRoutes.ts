@@ -12,6 +12,7 @@ const SLIDER = {
 
 const COLLECTIONS = {
   GET: "/collections",
+  GET_ById: (id: string) => `/collections/${id}`,
 };
 
 const CATEGORIES = {
