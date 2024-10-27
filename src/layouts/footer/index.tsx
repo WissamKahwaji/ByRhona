@@ -1,17 +1,32 @@
 import { AiFillTikTok } from "react-icons/ai";
-import { FaFacebookSquare, FaInstagramSquare } from "react-icons/fa";
+import {
+  FaFacebookSquare,
+  FaInstagramSquare,
+  FaSnapchatSquare,
+} from "react-icons/fa";
 import { FaSquareWhatsapp } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { useGetContactUsInfo } from "../../api/contact-us/queries";
 import { useGetDepartmentsInfoQuery } from "../../api/departments/queries";
 import { useTranslation } from "react-i18next";
+import { useAuth } from "../../context/AuthContext";
+import { useEffect, useState } from "react";
 
 const Footer = () => {
   const { data: contactUsInfo } = useGetContactUsInfo();
   const { data: departmentsInfo } = useGetDepartmentsInfoQuery();
-
+  const { isAuthenticated } = useAuth();
   const { t, i18n } = useTranslation();
   const selectedLanguage = i18n.language;
+  const [showFooterNote, setShowFooterNote] = useState(false);
+  useEffect(() => {
+    const isSignedIn = isAuthenticated;
+    const hasDismissedPopup = localStorage.getItem("hasDismissedPopup");
+
+    if (!isSignedIn && hasDismissedPopup == "true") {
+      setShowFooterNote(true);
+    }
+  }, [isAuthenticated]);
 
   return (
     <div className="flex w-full flex-col font-header">
@@ -27,6 +42,15 @@ const Footer = () => {
             </div>
           </Link>
         </div>
+        {showFooterNote && (
+          <Link to={`/signup`}>
+            <footer className=" text-center">
+              <p className="text-xs underline md:text-lg hover:text-secondary cursor-pointer duration-200 ease-out">
+                {t("signup_popup_desc")}
+              </p>
+            </footer>
+          </Link>
+        )}
         <div className="hidden md:flex flex-row space-x-8 items-start justify-around w-full mt-8">
           <div className="">
             <p className="mb-3 text-xl font-semibold capitalize text-secondary">
@@ -138,6 +162,11 @@ const Footer = () => {
                   <FaFacebookSquare className="h-8 w-8" />
                 </Link>
               </li>
+              <li>
+                <Link to={"/"} target="_blank">
+                  <FaSnapchatSquare className="h-8 w-8" />
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
@@ -227,7 +256,7 @@ const Footer = () => {
                 {t("social_media")}
               </p>
 
-              <ul className="mb-2 flex gap-2">
+              <ul className="mb-2 flex gap-2 flex-wrap">
                 <li>
                   <Link
                     to={`https://wa.me/${contactUsInfo?.content.whatsApp}`}
@@ -259,6 +288,14 @@ const Footer = () => {
                     target="_blank"
                   >
                     <FaFacebookSquare className="h-8 w-8" />
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={contactUsInfo?.content.snapChat ?? "/"}
+                    target="_blank"
+                  >
+                    <FaSnapchatSquare className="h-8 w-8" />
                   </Link>
                 </li>
               </ul>

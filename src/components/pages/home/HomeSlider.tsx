@@ -5,16 +5,9 @@ import React from "react";
 
 interface HomeSliderProos {
   images: string[] | undefined;
+  videos?: string[] | undefined;
 }
-const HomeSlider = ({ images }: HomeSliderProos) => {
-  // const imageSliders = [
-  //   {
-  //     img: "https://i.imgur.com/xtbZUjn.png",
-  //   },
-  //   {
-  //     img: "https://i.imgur.com/T5F21tb.png",
-  //   },
-  // ];
+const HomeSlider = ({ images, videos }: HomeSliderProos) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -86,16 +79,30 @@ const HomeSlider = ({ images }: HomeSliderProos) => {
   }
   const sliderRef = React.createRef<Slider>();
   return (
-    <div className="w-full md:h-[460px]  h-[140px]">
+    <div className="w-full md:h-[520px]  h-[180px]">
       <Slider {...settings} ref={sliderRef} className="w-full  ">
         {images &&
           images.map((item, index) => (
-            <div>
+            <div className="md:h-[490px]  h-[140px]">
               <img
                 src={item}
                 alt={`Slider ${index + 1}`}
                 className="w-full h-full object-cover"
               />
+            </div>
+          ))}
+        {videos &&
+          videos.map((item, index) => (
+            <div key={index}>
+              <video
+                className="w-full md:h-[490px]  h-[140px] object-contain"
+                controls
+                autoPlay
+                muted
+              >
+                <source src={item} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
             </div>
           ))}
       </Slider>

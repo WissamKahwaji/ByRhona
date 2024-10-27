@@ -29,6 +29,7 @@ const PRODUCTS = {
   GET_TOP_TEN_EXPENSIVE: "/products/get-top-ten-expensive",
   GET_TOP_TEN_CHEAPEST: "/products/get-top-ten-cheapest",
   GET_OFFERS_PRODUCTS: "/products/get-offers-products",
+  ADD_TO_NOTIFY_LIST: "/products/add-to-notify-list",
   CREATE_INTENT: "/products/create-payment",
   PAYMENT_CONFIG: "/products/config",
 };
@@ -38,6 +39,9 @@ const USER = {
   SIGNUP: "/user/signup",
   REQUEST_VOUCHER: (userId: string | undefined) =>
     `/user/request-amount/${userId}`,
+  GET_FAVORITES_LIST: (userId: string) => `/user/favorites/${userId}`,
+  REMOVE_FROM_FAVORITES: "/user/favorites/remove",
+  ADD_TO_FAVORITES: "/user/favorites/add",
   BYID: (userId: string | undefined) => `/user/byId/${userId}`,
 };
 
@@ -52,6 +56,13 @@ const VOUCHER = {
   EDIT_AMOUNT: (voucherId: string | undefined) => `/voucher/edit/${voucherId}`,
 };
 
+const LOGO = {
+  GET: "/logo",
+};
+const FEE = {
+  GET: "/deliveryFee",
+};
+
 const API_ROUTES = {
   CONTACT_US,
   ABOUT_US,
@@ -63,6 +74,8 @@ const API_ROUTES = {
   USER,
   ORDERS,
   VOUCHER,
+  LOGO,
+  FEE,
 };
 
 export default API_ROUTES;

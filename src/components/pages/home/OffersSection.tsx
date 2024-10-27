@@ -4,6 +4,8 @@ import ProductCard from "../../items/productCard";
 import { useGetOffersProductsQuery } from "../../../api/products/queries";
 import { useTranslation } from "react-i18next";
 
+import SeeAllButton from "../../ui/SeeAllButton";
+
 const OffersSection = () => {
   const {
     data: productsInfo,
@@ -24,6 +26,8 @@ const OffersSection = () => {
         </h2>
       </div>
       <div className="m-auto w-full lg:w-3/4 ">
+        <SeeAllButton />
+
         {productsInfo && (
           <Carousel
             infinite

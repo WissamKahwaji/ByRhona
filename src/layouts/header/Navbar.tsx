@@ -6,6 +6,7 @@ import {
   FaFacebook,
   FaInstagram,
   FaPhoneAlt,
+  FaSnapchat,
 } from "react-icons/fa";
 import {
   FaChevronRight,
@@ -22,6 +23,7 @@ import { useAuth } from "../../context/AuthContext";
 import { IoMdLogOut, IoMdPersonAdd } from "react-icons/io";
 import BasketMenu from "../../components/items/basketMenu";
 import { useTranslation } from "react-i18next";
+import { useGetLogoInfoQuery } from "../../api/logo/queries";
 
 const Navbar = () => {
   const { isAuthenticated } = useAuth();
@@ -29,6 +31,7 @@ const Navbar = () => {
   const location = useLocation();
   const currentPath = location.pathname;
   const { data: departmentsInfo } = useGetDepartmentsInfoQuery();
+  const { data: logoInfo } = useGetLogoInfoQuery();
   const { t, i18n } = useTranslation();
   const selectedLang = i18n.language;
   const socialMediaIcons = [
@@ -45,6 +48,7 @@ const Navbar = () => {
       link: "https://www.tiktok.com/@by_rhona_?_t=8pSe85jw9hY&_r=1",
     },
     { icon: <FaFacebook className="text-gray-800" />, link: "/" },
+    { icon: <FaSnapchat className="text-gray-800" />, link: "/" },
   ];
 
   const navItems = [
@@ -145,11 +149,7 @@ const Navbar = () => {
       <nav className="hidden md:flex items-center justify-between w-full px-20 py-1">
         <Link to={"/"} className="">
           <div className="flex justify-start items-center">
-            <img
-              src="https://i.imgur.com/GhSSHdx.png"
-              alt=""
-              className="w-20 h-auto"
-            />
+            <img src={logoInfo?.image} alt="" className="w-20 h-auto" />
           </div>
         </Link>
         <div className="flex flex-row gap-x-10 justify-start items-center capitalize ">
@@ -176,6 +176,7 @@ const Navbar = () => {
                         setIsShopDropdownOpen(false);
                         setOpenDepartmentId(null);
                       }}
+                      reloadDocument
                     >
                       <p className="px-4 py-2 text-gray-800 hover:bg-hoverColor cursor-pointer flex items-center justify-between">
                         {t("all_products")}
@@ -248,6 +249,15 @@ const Navbar = () => {
               </p>
             </Link>
           )}
+          {isAuthenticated && (
+            <Link to={`favorites/${userId}`}>
+              <p
+                className={`cursor-pointer font-semibold text-[#906d5b] hover:text-secondary duration-300 ease-in-out`}
+              >
+                {t("favorites")}
+              </p>
+            </Link>
+          )}
         </div>
         <div className="flex flex-row gap-x-3">
           <LanguageButton />
@@ -270,11 +280,7 @@ const Navbar = () => {
       <nav className="flex md:hidden items-center justify-between w-full px-3 py-1">
         <Link to={"/"} className="">
           <div className="flex justify-start items-center">
-            <img
-              src="https://i.imgur.com/GhSSHdx.png"
-              alt=""
-              className="w-14 h-auto"
-            />
+            <img src={logoInfo?.image} alt="" className="w-14 h-auto" />
           </div>
         </Link>
         <div className="flex gap-x-4 items-center justify-start">
@@ -390,6 +396,17 @@ const Navbar = () => {
                       className={`block font-header border-b-2 w-full border-b-secondary px-4 py-2 text-gray-800 hover:bg-hoverColor uppercase `}
                     >
                       {t("orders")}
+                    </Link>
+                  </div>
+                )}
+                {isAuthenticated && (
+                  <div className="w-full ">
+                    <Link
+                      onClick={toggleDrawer}
+                      to={`favorites/${userId}`}
+                      className={`block font-header border-b-2 w-full border-b-secondary px-4 py-2 text-gray-800 hover:bg-hoverColor uppercase `}
+                    >
+                      {t("favorites")}
                     </Link>
                   </div>
                 )}

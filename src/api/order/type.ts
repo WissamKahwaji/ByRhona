@@ -10,6 +10,7 @@ export type DeliveryDetailsInputModel = {
   unitNumber?: string;
   note?: string;
   paymentMethod: "cash" | "card";
+  locationType?: "insideUae" | "outsideUae";
 };
 
 export type UserOrder = {
@@ -59,4 +60,5 @@ export type PaymentOrdersValue = {
   paymentMethod: string;
   cartItems: CartItem[];
   isUseVoucher: boolean;
+  deliveryFee?: number;
 };

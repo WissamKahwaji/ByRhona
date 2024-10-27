@@ -5,6 +5,7 @@ import "react-multi-carousel/lib/styles.css";
 import Footer from "./layouts/footer";
 import { useAppSelector } from "./app/hooks";
 import { selectCartValues } from "./features/cart/slice";
+import BackToTopButton from "./components/ui/BackToTopButton";
 
 function App() {
   const { pathname } = useLocation();
@@ -24,6 +25,7 @@ function App() {
 
       <main className="mt-[58px] md:mt-[155px] lg:mt-[122px] xl:mt-[122px]">
         <Outlet />
+        <BackToTopButton />
       </main>
 
       <Footer />

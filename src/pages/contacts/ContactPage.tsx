@@ -33,6 +33,7 @@ const ContactPage = () => {
           phone={contactUsInfo?.content.phoneNumber}
           whatsApp={contactUsInfo?.content.whatsApp}
           tiktok={contactUsInfo?.content.tiktok}
+          snapChat={contactUsInfo?.content.snapChat}
         />
         <ContactForm />
       </div>

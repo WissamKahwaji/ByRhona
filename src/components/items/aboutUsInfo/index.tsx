@@ -13,7 +13,7 @@ const AboutUsInfo = ({ aboutUsContent }: AboutUsContentModel) => {
           className={`flex flex-col ${
             index % 2 == 0 ? "md:flex-row-reverse" : ""
           } items-center justify-center gap-4 px-4 md:flex-row md:items-start md:gap-16`}
-          initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+          initial={{ opacity: 0 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
           viewport={{ once: true, amount: 0.2 }}

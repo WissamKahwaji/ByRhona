@@ -61,9 +61,20 @@ const CART_TABLE_HEADER = [
 ];
 const ORDERS_TABLE_HEADER = ["products", "count", "total_price"];
 
+const UAE_EMIRATES = [
+  "Abu Dhabi",
+  "Dubai",
+  "Sharjah",
+  "Ajman",
+  "Umm Al Quwain",
+  "Ras Al Khaimah",
+  "Fujairah",
+] as const;
+
 export {
   CAROUSAL_RESPONSIVE,
   COLLECTION_CAROUSAL_RESPONSIVE,
   CART_TABLE_HEADER,
   ORDERS_TABLE_HEADER,
+  UAE_EMIRATES,
 };

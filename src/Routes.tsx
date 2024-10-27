@@ -18,6 +18,7 @@ import CartPage from "./pages/cart";
 import Orders from "./pages/orders";
 import PaymentOrdersDetailsPage from "./pages/payment-orders-details/PaymentOrdersDetailsPage";
 import CollectionDetailsPage from "./pages/collections/CollectionDetailsPage";
+import FavoritesPage from "./pages/favorites/FavoritesPage";
 
 const Routes = () => {
   const router = createBrowserRouter(
@@ -37,6 +38,7 @@ const Routes = () => {
           element={<PaymentOrdersDetailsPage />}
         />
         <Route path="orders/user/:id" element={<Orders />} />
+        <Route path="favorites/:id" element={<FavoritesPage />} />
       </Route>
     )
   );

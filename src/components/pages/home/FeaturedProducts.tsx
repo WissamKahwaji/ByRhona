@@ -3,6 +3,7 @@ import { CAROUSAL_RESPONSIVE } from "../../../constants";
 import ProductCard from "../../items/productCard";
 import { useGetLastSixProductsQuery } from "../../../api/products/queries";
 import { useTranslation } from "react-i18next";
+import SeeAllButton from "../../ui/SeeAllButton";
 
 const FeaturedProducts = () => {
   const {
@@ -23,6 +24,7 @@ const FeaturedProducts = () => {
         </h2>
       </div>
       <div className="m-auto w-full lg:w-3/4 ">
+        <SeeAllButton />
         {productsInfo && (
           <Carousel
             infinite

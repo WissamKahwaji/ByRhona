@@ -6,6 +6,11 @@ export type UserModel = {
   confirmPassword?: string;
   voucherAmount?: number;
   voucher?: string;
+  favorites?: {
+    products: {
+      productId: string;
+    }[];
+  };
 };
 
 export type SignInValues = {

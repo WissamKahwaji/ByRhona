@@ -6,6 +6,7 @@ import {
   FaTiktok,
   FaWhatsappSquare,
 } from "react-icons/fa";
+import { FaSquareSnapchat } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
 
@@ -18,6 +19,7 @@ type ContactInfoSectionProps = {
   instagram: string | undefined;
   whatsApp: string | undefined;
   tiktok: string | undefined;
+  snapChat: string | undefined;
 };
 
 const ContactInfoSection = (props: ContactInfoSectionProps) => {
@@ -88,6 +90,11 @@ const ContactInfoSection = (props: ContactInfoSectionProps) => {
           <li>
             <Link to={props.facebook ?? "/"} target="_blank">
               <FaFacebookSquare className="h-8 w-8 text-gray-500 hover:text-primary transition-transform hover:scale-105 md:h-12 md:w-12" />
+            </Link>
+          </li>
+          <li>
+            <Link to={props.snapChat ?? "/"} target="_blank">
+              <FaSquareSnapchat className="h-8 w-8 text-gray-500 hover:text-primary transition-transform hover:scale-105 md:h-12 md:w-12" />
             </Link>
           </li>
         </ul>

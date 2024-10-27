@@ -15,6 +15,7 @@ const ProductCard = (props: ProductCardProps) => {
     price,
     isOffer,
     priceAfterOffer,
+    productQuantity,
   } = props;
   const { t, i18n } = useTranslation();
   const selectedLanguage = i18n.language;
@@ -24,6 +25,11 @@ const ProductCard = (props: ProductCardProps) => {
       {isOffer && (
         <div className="absolute top-6 right-6 bg-foreground text-black px-3 py-1 text-xs font-semibold z-40 rotate-45 transform translate-x-2 -translate-y-2">
           {t("offer")}
+        </div>
+      )}
+      {productQuantity !== undefined && productQuantity <= 0 && (
+        <div className="absolute top-10 left-0 bg-foreground text-black px-3 py-1 text-xs font-semibold z-40 -rotate-45 transform translate-x-2 -translate-y-2">
+          {t("out_of_stock")}
         </div>
       )}
       <Link to={`/products/${_id}`}>
@@ -83,6 +89,7 @@ const ProductCard = (props: ProductCardProps) => {
           </div>
         </div>
       </Link>
+
       <Link to={`/products/${_id}`}>
         <button className="rounded w-full px-2 py-1 bg-foreground font-body font-semibold capitalize hover:bg-primary hover:text-white duration-300 transform ease-in-out">
           {t("add_to_cart")}

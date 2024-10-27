@@ -23,6 +23,7 @@ export type Product = {
   };
 
   productQuantity?: number;
+  notifyUsers?: string[];
 };
 
 export type IntentData = {
@@ -33,4 +34,22 @@ export type PaymentConfigRes = {
 };
 export type IntentRes = {
   clientSecret: string;
+};
+
+export type FavoriteItemsModel = {
+  productId: string;
+  title: string;
+  titleFr: string;
+  titleAr: string;
+  img: string;
+  price: {
+    priceAED: number;
+    priceUSD: number;
+  };
+  category: string;
+  categoryAr: string;
+  categoryFr: string;
+  desc: string;
+  descFr: string;
+  descAr: string;
 };

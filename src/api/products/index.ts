@@ -36,6 +36,15 @@ const getOffersProducts = async () => {
   return res.data;
 };
 
+const addUserToNotifyList = async (productId: string, userId: string) => {
+  const data = { productId, userId };
+  const res = await publicInstance.post<string>(
+    API_ROUTES.PRODUCTS.ADD_TO_NOTIFY_LIST,
+    data
+  );
+  return res.data;
+};
+
 const getPaymentConfig = async () => {
   const res = await publicInstance.get<PaymentConfigRes>(
     API_ROUTES.PRODUCTS.PAYMENT_CONFIG
@@ -58,4 +67,5 @@ export {
   getOffersProducts,
   getPaymentConfig,
   createIntent,
+  addUserToNotifyList,
 };

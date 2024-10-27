@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Form, Formik, FormikHelpers } from "formik";
 import { FaEyeLowVision } from "react-icons/fa6";
 import { FaEye } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const SignUpPage = () => {
   const { t } = useTranslation();
@@ -142,6 +143,11 @@ const SignUpPage = () => {
                   {errors.confirmPassword}
                 </div>
               )}
+            </div>
+            <div className="w-full flex flex-row justify-between items-center text-xs underline text-primary mt-2">
+              <Link to={`/signin`}>
+                <p>{t("login_here_if_you_have_account")}</p>
+              </Link>
             </div>
             <button
               type="submit"

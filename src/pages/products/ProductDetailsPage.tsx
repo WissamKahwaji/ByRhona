@@ -1,5 +1,8 @@
 import { CiSquareMinus, CiSquarePlus } from "react-icons/ci";
-import { useGetProductByIdInfoQuery } from "../../api/products/queries";
+import {
+  useAddUserToNotifyListMutation,
+  useGetProductByIdInfoQuery,
+} from "../../api/products/queries";
 import LoadingPage from "../loading-page";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -14,9 +17,16 @@ import { useAuth } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import { FaRegPlayCircle } from "react-icons/fa";
+import {
+  useAddProductToFavoritesMutation,
+  useGetUserFavoritesListQuery,
+  useRemoveProductFromFavoritesMutation,
+} from "../../api/user/queries";
+import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 
 const ProductDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
+  const userId = localStorage.getItem("userId");
   const dispatch = useAppDispatch();
   const { isAuthenticated } = useAuth();
   const { t, i18n } = useTranslation();
@@ -27,6 +37,15 @@ const ProductDetailsPage = () => {
     isFetching,
     isError,
   } = useGetProductByIdInfoQuery(id);
+  const { data: favoritesListInfo } = useGetUserFavoritesListQuery(
+    userId ?? ""
+  );
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [isInNotifyList, setIsInNotifyList] = useState(false);
+
+  const { mutate: addItem } = useAddProductToFavoritesMutation();
+  const { mutate: removeItem } = useRemoveProductFromFavoritesMutation();
+  const { mutate: addtoNotifyList } = useAddUserToNotifyListMutation();
 
   const { watch, setValue, handleSubmit } = useForm<AddToCartValues>({
     resolver: zodResolver(addToCartValidationSchema),
@@ -61,6 +80,28 @@ const ProductDetailsPage = () => {
       setMainMedia(productInfo.img);
     }
   }, [productInfo]);
+
+  useEffect(() => {
+    if (favoritesListInfo) {
+      const productIds = favoritesListInfo.map(item => item.productId);
+      if (productIds.includes(productInfo?._id ?? "")) {
+        setIsFavorite(true);
+      } else {
+        setIsFavorite(false);
+      }
+    }
+  }, [favoritesListInfo, productInfo?._id]);
+
+  useEffect(() => {
+    if (productInfo?.notifyUsers && productInfo?.notifyUsers.length > 0) {
+      const userIds = productInfo?.notifyUsers.map(item => item);
+      if (userIds.includes(userId!)) {
+        setIsInNotifyList(true);
+      } else {
+        setIsInNotifyList(false);
+      }
+    }
+  }, [productInfo?.notifyUsers, userId]);
 
   const handleMediaClick = (media: string) => {
     setMainMedia(media);
@@ -152,17 +193,44 @@ const ProductDetailsPage = () => {
               : productInfo?.titleAr}
           </p>
 
-          <div className="flex items-center gap-2 text-secondary">
-            <p className="font-semibold capitalize md:text-lg">
-              {t("category")}:
-            </p>
-            <p className="sm:text-lg md:text-lg">
-              {selectedLanguage === "en"
-                ? productInfo?.category.name
-                : selectedLanguage === "fr"
-                ? productInfo?.category.nameFr
-                : productInfo?.category.nameAr}
-            </p>
+          <div className="flex justify-between items-center w-full">
+            <div className="flex items-center gap-2 text-secondary">
+              <p className="font-semibold capitalize md:text-lg">
+                {t("category")}:
+              </p>
+              <p className="sm:text-lg md:text-lg">
+                {selectedLanguage === "en"
+                  ? productInfo?.category.name
+                  : selectedLanguage === "fr"
+                  ? productInfo?.category.nameFr
+                  : productInfo?.category.nameAr}
+              </p>
+            </div>
+            {isFavorite === false ? (
+              <MdFavoriteBorder
+                className="w-5 h-5 text-primary cursor-pointer hover:scale-110 duration-300 ease-in-out"
+                onClick={() => {
+                  if (isAuthenticated) {
+                    addItem({
+                      userId: userId ?? "",
+                      productId: productInfo?._id ?? "",
+                    });
+                  } else {
+                    toast.info("Please login first to add to favorites");
+                  }
+                }}
+              />
+            ) : (
+              <MdFavorite
+                className="w-5 h-5 text-red-500 cursor-pointer hover:scale-110 duration-300 ease-in-out"
+                onClick={() => {
+                  removeItem({
+                    userId: userId ?? "",
+                    productId: productInfo?._id ?? "",
+                  });
+                }}
+              />
+            )}
           </div>
 
           <div className="flex flex-col gap-4 md:flex-row md:gap-8">
@@ -217,6 +285,31 @@ const ProductDetailsPage = () => {
                 : t("out_of_stock")}
             </p>
           </div>
+          {isAuthenticated &&
+            productInfo?.productQuantity !== undefined &&
+            productInfo?.productQuantity === 0 && (
+              <div className="flex items-center justify-start gap-x-2">
+                <input
+                  type="checkbox"
+                  id="notifyMe"
+                  name="notifyMe"
+                  checked={isInNotifyList}
+                  className="cursor-pointer"
+                  onClick={() => {
+                    addtoNotifyList({
+                      productId: productInfo?._id ?? "",
+                      userId: userId ?? "",
+                    });
+                  }}
+                />
+                <label
+                  htmlFor="notifyMe"
+                  className="text-sm text-primary font-semibold"
+                >
+                  {t("notify_me_when_this_product_is_back_in_stock")}
+                </label>
+              </div>
+            )}
           <div className="overflow-hidden whitespace-pre-wrap">
             <p>
               {selectedLanguage === "en"
@@ -242,14 +335,22 @@ const ProductDetailsPage = () => {
               <div className="flex">
                 <button
                   type="button"
-                  onClick={() => setValue("count", watch("count") + 1)}
+                  onClick={() => {
+                    if (watch("count") > 0) {
+                      setValue("count", watch("count") + 1);
+                    }
+                  }}
                   className="transition-transform hover:scale-90"
                 >
                   <CiSquarePlus className="h-12 w-12" />
                 </button>
                 <button
                   type="button"
-                  onClick={() => setValue("count", watch("count") - 1)}
+                  onClick={() => {
+                    if (watch("count") > 1) {
+                      setValue("count", watch("count") - 1);
+                    }
+                  }}
                   className="transition-transform hover:scale-90 disabled:hover:scale-100"
                 >
                   <CiSquareMinus className="h-12 w-12" />

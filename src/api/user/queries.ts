@@ -1,7 +1,15 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAuth } from "../../context/AuthContext";
 import { SignInValues, UserModel } from "./type";
-import { getUserById, requestVoucherAmount, signIn, signup } from ".";
+import {
+  addProductToFavorites,
+  getUserById,
+  getUserFavoritesListInfo,
+  removeProductFromFavorites,
+  requestVoucherAmount,
+  signIn,
+  signup,
+} from ".";
 import { toast } from "react-toastify";
 import { ErrorMessage } from "../type";
 
@@ -60,9 +68,58 @@ const useGetUserByIdQuery = (userId: string | undefined) =>
     enabled: !!userId,
   });
 
+const useGetUserFavoritesListQuery = (userId: string) =>
+  useQuery({
+    queryKey: ["get-user-favorites-list", userId],
+    queryFn: () => getUserFavoritesListInfo(userId),
+  });
+
+const useAddProductToFavoritesMutation = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationKey: ["add-to-favorites"],
+    mutationFn: (data: { userId: string; productId: string }) =>
+      addProductToFavorites(data.userId, data.productId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["get-user-favorites-list"],
+      });
+      toast.success("success");
+    },
+    onError: (error: ErrorMessage) => {
+      const errorMessage =
+        error.response?.data?.message || "Failed , please try again later";
+      toast.error(errorMessage);
+    },
+  });
+};
+
+const useRemoveProductFromFavoritesMutation = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationKey: ["remove-from-favorites"],
+    mutationFn: (data: { userId: string; productId: string }) =>
+      removeProductFromFavorites(data.userId, data.productId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["get-user-favorites-list"],
+      });
+      toast.success("success");
+    },
+    onError: (error: ErrorMessage) => {
+      const errorMessage =
+        error.response?.data?.message || "Failed , please try again later";
+      toast.error(errorMessage);
+    },
+  });
+};
+
 export {
   useSignInMutation,
   useSignUpMutation,
   useRequestVoucherAmountMutation,
   useGetUserByIdQuery,
+  useAddProductToFavoritesMutation,
+  useRemoveProductFromFavoritesMutation,
+  useGetUserFavoritesListQuery,
 };
