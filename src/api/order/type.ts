@@ -28,7 +28,11 @@ export type UserOrder = {
   userName: string;
   userNote: string;
   userStreet: string;
-
+  userFloorNo?: string;
+  userUnitNo?: string;
+  isUseVoucher?: boolean;
+  UsedVoucherAmount?: number;
+  deliveryFee?: number;
   _id: string;
 };
 export type CartItem = {

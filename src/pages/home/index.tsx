@@ -12,6 +12,8 @@ import VoucherSection from "../../components/pages/home/VoucherSection";
 import { useAuth } from "../../context/AuthContext";
 import { useEffect, useState } from "react";
 import ShippingSlider from "../../components/pages/home/ShippingSlider";
+import HappyClients from "../clients-reviews/HappyClients";
+import { useGetReviresInfo } from "../../api/clients-reviews/queries";
 
 const HomePage = () => {
   const { data: aboutUsInfo, isLoading, isError } = useGetAboutUsInfoQuery();
@@ -22,6 +24,13 @@ const HomePage = () => {
     isLoading: isLoadingSliders,
     isError: isErrorSliders,
   } = useGetSlidersInfo();
+
+  const {
+    data: reviewsInfo,
+    isLoading: isLoadingReviews,
+    isError: isErrorReviews,
+  } = useGetReviresInfo();
+
   const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
@@ -39,8 +48,8 @@ const HomePage = () => {
     location.reload();
   };
 
-  if (isLoading || isLoadingSliders) return <LoadingPage />;
-  if (isError || isErrorSliders) return <div>Error !!!</div>;
+  if (isLoading || isLoadingSliders || isLoadingReviews) return <LoadingPage />;
+  if (isError || isErrorSliders || isErrorReviews) return <div>Error !!!</div>;
   return (
     <div className="text-black">
       {/* Pop-up modal */}
@@ -76,6 +85,7 @@ const HomePage = () => {
       <CollectionsCategory />
       <FeaturedProducts />
       <ProductSection />
+      {reviewsInfo?.images && <HappyClients images={reviewsInfo?.images} />}
       <section className="py-12 bg-gray-background mt-3 md:mt-3 lg:mt-10 xl:mt-12">
         <h2 className="mb-2 scroll-m-20 text-center text-3xl font-semibold uppercase tracking-tight first:mt-0 sm:mb-4 md:mb-8">
           {t("about_us")}

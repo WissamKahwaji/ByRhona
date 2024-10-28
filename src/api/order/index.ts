@@ -14,4 +14,11 @@ const getUserOrders = async (id: string) => {
   return res.data;
 };
 
-export { submitOrderDetails, getUserOrders };
+const getOrderByIdInfo = async (id: string) => {
+  const res = await publicInstance.get<UserOrder>(
+    API_ROUTES.ORDERS.GETById(id)
+  );
+  return res.data;
+};
+
+export { submitOrderDetails, getUserOrders, getOrderByIdInfo };

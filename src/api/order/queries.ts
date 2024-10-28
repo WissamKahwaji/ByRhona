@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../app/hooks";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { PaymentOrdersValue } from "./type";
-import { getUserOrders, submitOrderDetails } from ".";
+import { getOrderByIdInfo, getUserOrders, submitOrderDetails } from ".";
 import { clearCart } from "../../features/cart/slice";
 import { toast } from "react-toastify";
 
@@ -38,4 +38,15 @@ const useGetUserOrdersQuery = (id: string | undefined) =>
     enabled: !!id,
   });
 
-export { useSubmitOrderDetailsMutation, useGetUserOrdersQuery };
+const useGetOrderByIdQuery = (id: string | undefined) =>
+  useQuery({
+    queryKey: ["get-order-by-id", id],
+    queryFn: () => getOrderByIdInfo(id!),
+    enabled: !!id,
+  });
+
+export {
+  useSubmitOrderDetailsMutation,
+  useGetUserOrdersQuery,
+  useGetOrderByIdQuery,
+};

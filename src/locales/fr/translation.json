@@ -98,5 +98,18 @@
     "outside_uae":"en dehors des UAE",
     "delivery_policy":"Votre commande sera traitée dans un délai de 2 à 4 jours ouvrables après avoir soumis votre commande",
     "your_delivery_fee_is":"vos frais de livraison sont",
-    "notify_me_when_this_product_is_back_in_stock":"Prévenez-moi lorsque ce produit sera de nouveau en stock"
+    "notify_me_when_this_product_is_back_in_stock":"Prévenez-moi lorsque ce produit sera de nouveau en stock",
+    "placed_at":"placé à",
+    "order_number":"numéro de commande",
+    "location":"emplacement",
+    "order_details":"détails de la commande",
+    "mobile_number":"numéro de portable",
+    "country":"pays",
+    "street":"rue",
+    "building":"bâtiment",
+    "floor_number":"numéro d'étage",
+    "unit_number":"numéro d'unité",
+    "is_used_voucher":"est un bon utilisé par l'utilisateur",
+    "used_voucher_amount":"montant du bon utilisé",
+    "happy_clients":"clients satisfaits"
 }

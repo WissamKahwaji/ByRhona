@@ -33,7 +33,7 @@ const ProductCard = (props: ProductCardProps) => {
         </div>
       )}
       <Link to={`/products/${_id}`}>
-        <div className="group flex w-full  flex-col items-center gap-4   ">
+        <div className="group flex w-full  flex-col items-center gap-1   ">
           <div className="  relative w-full ">
             <div className="absolute left-0 top-0 flex h-0 w-full items-center justify-center bg-foreground/50  transition-all duration-500 group-hover:h-full  ">
               <p className=" hidden w-full bg-background p-2 text-center opacity-100 group-hover:block text-sm font-body whitespace-pre-wrap line-clamp-3 overflow-ellipsis">
@@ -85,6 +85,11 @@ const ProductCard = (props: ProductCardProps) => {
                 <span className="mr-1">{priceAfterOffer.priceUSD}</span>
                 <span className="uppercase">$</span>
               </p>
+            )}
+          </div>
+          <div className="h-3">
+            {productQuantity !== undefined && productQuantity <= 0 && (
+              <div className="text-red-600">{t("out_of_stock")}</div>
             )}
           </div>
         </div>

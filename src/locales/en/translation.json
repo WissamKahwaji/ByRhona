@@ -98,5 +98,18 @@
     "outside_uae":"outside UAE",
     "delivery_policy":"Your order will be processed within 2 to 4 business days after you submit your order.",
     "your_delivery_fee_is":"your delivery fee is",
-    "notify_me_when_this_product_is_back_in_stock":"Notify me when this product is back in stock"
+    "notify_me_when_this_product_is_back_in_stock":"Notify me when this product is back in stock",
+    "placed_at":"placed at",
+    "order_number":"order number",
+    "location":"location",
+    "order_details":"order details",
+    "mobile_number":"mobile number",
+    "country":"country",
+    "street":"street",
+    "building":"building",
+    "floor_number":"floor number",
+    "unit_number":"unit number",
+    "is_used_voucher":"is user used voucher",
+    "used_voucher_amount":"used voucher amount",
+    "happy_clients":"happy clients"
 }

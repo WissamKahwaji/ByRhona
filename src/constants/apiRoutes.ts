@@ -48,6 +48,7 @@ const USER = {
 const ORDERS = {
   SUBMIT_DETAILS: "/order/submit",
   USER_ORDERS: (id: string) => `/order/user-orders/${id}`,
+  GETById: (id: string | undefined) => `/order/${id}`,
 };
 
 const VOUCHER = {
@@ -63,6 +64,10 @@ const FEE = {
   GET: "/deliveryFee",
 };
 
+const REVIEWS = {
+  GET: "/clientsReviews",
+};
+
 const API_ROUTES = {
   CONTACT_US,
   ABOUT_US,
@@ -76,6 +81,7 @@ const API_ROUTES = {
   VOUCHER,
   LOGO,
   FEE,
+  REVIEWS,
 };
 
 export default API_ROUTES;

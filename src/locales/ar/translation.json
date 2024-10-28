@@ -98,5 +98,18 @@
     "outside_uae":"خارج دولة الإمارات العربية المتحدة",
     "delivery_policy":"سيتم معالجة طلبك في غضون 2 إلى 4 يوم عمل بعد تقديم طلبك",
     "your_delivery_fee_is":"رسوم التوصيل الخاصة بك",
-    "notify_me_when_this_product_is_back_in_stock":"أعلمني عندما يعود هذا المنتج إلى المخزون"
+    "notify_me_when_this_product_is_back_in_stock":"أعلمني عندما يعود هذا المنتج إلى المخزون",
+    "placed_at":"طلبت بتاريخ",
+    "order_number":"رقم الطلبية",
+    "location":"الموقع",
+    "order_details":"تفاصيل الطلبية",
+    "mobile_number":"رقم الموبايل",
+    "country":"البلد",
+    "street":"الشارع",
+    "building":"البناية",
+    "floor_number":"رقم الطابق",
+    "unit_number":"رقم الوحدة",
+    "is_used_voucher":"هل استخدمت الفاوتشر",
+    "used_voucher_amount":"قيمة الفاوتشر المستخدمة",
+    "happy_clients":"عملاء سعداء"
 }

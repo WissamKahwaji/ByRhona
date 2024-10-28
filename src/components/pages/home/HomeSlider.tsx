@@ -14,7 +14,7 @@ const HomeSlider = ({ images, videos }: HomeSliderProos) => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 2000,
     prevArrow: <SamplePrevArrow />,
     nextArrow: <SampleNextArrow />,
@@ -59,10 +59,10 @@ const HomeSlider = ({ images, videos }: HomeSliderProos) => {
   function SamplePrevArrow() {
     return (
       <div
-        className="hidden lg:absolute lg:top-1/2 lg:left-10 lg:transform lg:-translate-y-1/2 lg:cursor-pointer"
+        className="absolute lg:top-1/2 top-1/3 z-40 lg:left-4 left-2 transform lg:-translate-y-1/2 lg:cursor-pointer"
         onClick={handlePrevSlide}
       >
-        <span className="text-5xl text-white">&lt;</span>
+        <span className="md:text-4xl text-2xl font-bold text-black">&lt;</span>
       </div>
     );
   }
@@ -70,10 +70,10 @@ const HomeSlider = ({ images, videos }: HomeSliderProos) => {
   function SampleNextArrow() {
     return (
       <div
-        className="hidden lg:absolute lg:top-1/2 lg:right-10 lg:transform lg:-translate-y-1/2 lg:cursor-pointer"
+        className="absolute lg:top-1/2 top-1/3 z-40 lg:right-4 right-2 lg:transform lg:-translate-y-1/2 lg:cursor-pointer"
         onClick={handleNextSlide}
       >
-        <span className="text-5xl font-bold text-white">&gt;</span>
+        <span className="md:text-4xl text-2xl font-bold text-black">&gt;</span>
       </div>
     );
   }

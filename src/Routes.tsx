@@ -19,6 +19,7 @@ import Orders from "./pages/orders";
 import PaymentOrdersDetailsPage from "./pages/payment-orders-details/PaymentOrdersDetailsPage";
 import CollectionDetailsPage from "./pages/collections/CollectionDetailsPage";
 import FavoritesPage from "./pages/favorites/FavoritesPage";
+import OrderDetails from "./pages/orders/OrderDetails";
 
 const Routes = () => {
   const router = createBrowserRouter(
@@ -38,6 +39,10 @@ const Routes = () => {
           element={<PaymentOrdersDetailsPage />}
         />
         <Route path="orders/user/:id" element={<Orders />} />
+        <Route
+          path="orders/user/:id/details/:orderId"
+          element={<OrderDetails />}
+        />
         <Route path="favorites/:id" element={<FavoritesPage />} />
       </Route>
     )
